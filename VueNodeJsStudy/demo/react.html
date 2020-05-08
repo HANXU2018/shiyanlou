@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Demo</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>React Demo</h2>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class Welcome extends React.Component {
+        constructor(props) {
+          super(props);
+          const list = props.list;
+          const listItems = list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ));
+          this.state = { listItems, newItem: "" };
+          this.handleClick = this.handleClick.bind(this);
+          this.handleChange = this.handleChange.bind(this);
+        }
+        handleClick() {
+          this.setState(prevState => ({
+            listItems: [
+              ...prevState.listItems,
+              <li key={prevState.listItems.length}>{prevState.newItem}</li>
+            ]
+          }));
+        }
+        handleChange() {
+          this.setState({ newItem: event.target.value });
+        }
+        render() {
+          return (
+            <div>
+              <input
+                type="text"
+                value={this.state.newItem}
+                onChange={this.handleChange}
+              />
+              <button onClick={this.handleClick}>添加</button>
+              <ul>{this.state.listItems}</ul>
+            </div>
+          );
+        }
+      }
+      
+      const items = ["Vue.js", "Angular", "React", "Jquery"];
+      ReactDOM.render(
+        <Welcome list={items} />,
+        document.getElementById("root")
+      );
+    </script>
+
+  </body>
+</html>
