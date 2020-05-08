@@ -11,6 +11,8 @@
       <button onclick="changeList()">添加</button>
       <ul id="list"></ul>
     </div>
+
+
     <script>
       let items = ["Vue.js", "Angular", "React", "jQuery"];
       function appendText(value) {
@@ -20,6 +22,7 @@
         var list = document.getElementById("list");
         list.appendChild(para);
       }
+
       function clearList() {
         let list = document.getElementById("list");
         var listChildren = list.childNodes;
@@ -28,6 +31,7 @@
           list.removeChild(element);
         }
       }
+
       function refreshList() {
         clearList();
         for (let index = 0; index < items.length; index++) {
@@ -35,11 +39,13 @@
           appendText(element);
         }
       }
+
       function changeList() {
         let newItem = document.getElementById("input").value;
         items.push(newItem);
         refreshList();
       }
+      
       refreshList();
     </script>
   </body>

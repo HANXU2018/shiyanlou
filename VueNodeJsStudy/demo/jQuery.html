@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <h2>jQuery Demo</h2>
+    <div>
+      <input type="text" />
+      <button>添加</button>
+      <ul></ul>
+    </div>
+    <script>
+      let items = ["Vue.js", "Angular", "React", "jQuery"];
+      function appendText(value) {
+        var txt = $("<li></li>").text(value);
+        $("ul").append(txt);
+      }
+      function refreshList() {
+        $("ul").empty();
+        for (let index = 0; index < items.length; index++) {
+          const element = items[index];
+          appendText(element);
+        }
+      }
+      $(document).ready(function() {
+        refreshList();
+        $("button").click(function(event) {
+          let newItem = $("input").val();
+          items.push(newItem);
+          refreshList();
+        });
+      });
+    </script>
+  </body>
+</html>   
