@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>Vue.js Demo</h2>
+      <input v-model="newItem" type="text" />
+      <button @click="items.push(newItem)">添加</button>
+      <ul>
+        <li v-for="item in items" :key="item.id">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      new Vue({
+        el: "#root",
+        data: {
+          items: ["Vue.js", "Angular", "React", "jQuery"],
+          newItem: ""
+        }
+      });
+    </script>
+  </body>
+</html>
