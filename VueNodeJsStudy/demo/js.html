@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Demo</title>
+  </head>
+  <body>
+    <h2>JavaScript Demo</h2>
+    <div>
+      <input type="text" id="input" />
+      <button onclick="changeList()">添加</button>
+      <ul id="list"></ul>
+    </div>
+    <script>
+      let items = ["Vue.js", "Angular", "React", "jQuery"];
+      function appendText(value) {
+        var para = document.createElement("li");
+        var node = document.createTextNode(value);
+        para.appendChild(node);
+        var list = document.getElementById("list");
+        list.appendChild(para);
+      }
+      function clearList() {
+        let list = document.getElementById("list");
+        var listChildren = list.childNodes;
+        for (let index = listChildren.length - 1; index >= 0; index--) {
+          const element = listChildren[index];
+          list.removeChild(element);
+        }
+      }
+      function refreshList() {
+        clearList();
+        for (let index = 0; index < items.length; index++) {
+          const element = items[index];
+          appendText(element);
+        }
+      }
+      function changeList() {
+        let newItem = document.getElementById("input").value;
+        items.push(newItem);
+        refreshList();
+      }
+      refreshList();
+    </script>
+  </body>
+</html>
