@@ -1,7 +1,16 @@
 var http = require("http"); //加载内置 http 模块，无需安装
-var db = require("./db");
+// var db = require("./db");
+let { Users } = require("./model"); //引入 model.js
+
 http
   .createServer(function(request, response) {
+      var newUser = new Users({
+      name: "Steven",
+      info: { age: 30, height: 170 }
+    });
+    newUser.save(function(err, res) {
+      console.log("保存结束");
+    });
     response.writeHead(200, { "Content-Type": "text/plain" });
 
     response.end("Node Server is OK. \n"); // 发送数据
