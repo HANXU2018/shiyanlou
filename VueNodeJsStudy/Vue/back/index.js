@@ -6,7 +6,7 @@ http
 
     response.end("Node Server is OK. \n"); // 发送数据
   })
-  .listen(8080);
+  .listen(8082);
 
 // 终端打印如下信息
-console.log("Server running at http://127.0.0.1:8080/");
+console.log("Server running at http://127.0.0.1:8082/");
