@@ -1,29 +1,25 @@
-var http = require("http"); //加载内置 http 模块，无需安装
 const Koa = require("koa");
 const app = new Koa();
-// var db = require("./db");
-let { Users } = require("./model"); //引入 model.js
+let middle1 = async (ctx, next) => {
+  if (ctx.path == "/favicon.ico") return;
+  console.log("1 before");
+  await next();
+  console.log("1 after");
+  ctx.body = "Hello Koa Middleware.";
+};
+let middle2 = async (ctx, next) => {
+  console.log("2 before");
+  await next();
+  console.log("2 after");
+};
+let middle3 = async (ctx, next) => {
+  console.log("3 before");
+  await next();
+  console.log("3 after");
+};
 
-app.use(async ctx => {
-  ctx.body = "Hello Koa.";
-});
+app.use(middle1);
+app.use(middle2);
+app.use(middle3);
 app.listen(8082);
 console.log("Server running at http://127.0.0.1:8082/");
-
-// http
-//   .createServer(function(request, response) {
-//       var newUser = new Users({
-//       name: "Steven",
-//       info: { age: 30, height: 170 }
-//     });
-//     newUser.save(function(err, res) {
-//       console.log("保存结束");
-//     });
-//     response.writeHead(200, { "Content-Type": "text/plain" });
-
-//     response.end("Node Server is OK. \n"); // 发送数据
-//   })
-//   .listen(8082);
-
-// // 终端打印如下信息
-// console.log("Server running at http://127.0.0.1:8082/");
