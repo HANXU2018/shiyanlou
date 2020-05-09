@@ -2,6 +2,11 @@ const Koa = require("koa");
 const app = new Koa();
 let allMiddleGroup = require("./mutimidd");
 app.use(allMiddleGroup);
+
+const router = require("./router");
+app.use(router.routes(), router.allowedMethods());
+
+
 // 全局错误捕获
 app.use(async (ctx, next) => {
   try {
